@@ -4,6 +4,7 @@ import sys
 import os
 
 from fnNews import *
+from fnStock import *
 
 # .py가 있는 경로를 추가
 sys.path.append(os.path.join(os.path.dirname(__file__),'lib'))
@@ -27,7 +28,7 @@ def fnSidebar():
             "부동산": "https://www.mk.co.kr/rss/50300009/",
             "문화/연애" : " https://www.mk.co.kr/rss/30000023/"
         },
-        "폴더 2": ["파일 2-1", "파일 2-2", "파일 2-3"],
+        "주식": ["국내 주식", "파일 2-2", "파일 2-3"],
         "폴더 3": ["파일 3-1", "파일 3-2", "파일 3-3"],
     }
         
@@ -52,6 +53,10 @@ def fnSidebar():
             rss_url = folders["News"][st.session_state['selected_file']]
             fnGetNews(rss_url)
         
+        if selected_folder == "주식":
+            fnStock()
+            print(st.session_state['selected_file'])
+
         # 뉴스 RSS URL
         st.write(f"**선택한 파일:** {st.session_state['selected_file']}")
         st.write(f"여기에 **{st.session_state['selected_file']}**의 내용을 표시합니다.")
