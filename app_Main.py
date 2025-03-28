@@ -20,11 +20,11 @@ def loadJSON(path):
 # 로고 Lottie와 타이틀 출력
 col1, col2 = st.columns([1,2])
 with col1:
-    lottie = loadJSON('./resource/json/sunny.json')
+    lottie = loadJSON('./resource/json/sunny_.json')
     st_lottie(lottie, speed=5, loop=True, width=150, height=150)
 with col2:
     ''
     ''
-    st.title('Title_')
+    st.title('화창한 써나네')
 
 fnSidebar()
