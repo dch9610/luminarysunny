@@ -27,7 +27,7 @@ def fnSidebar():
             "기업/경영": "https://www.mk.co.kr/rss/50100032/",
             "금융": "https://www.mk.co.kr/rss/50200011/",
             "부동산": "https://www.mk.co.kr/rss/50300009/",
-            "문화/연애" : " https://www.mk.co.kr/rss/30000023/"
+            "문화/연예" : " https://www.mk.co.kr/rss/30000023/"
         },
         "주식": ["국내 주식", "파일 2-2", "파일 2-3"],
         "C": ["파일 3-1", "파일 3-2", "파일 3-3"],
