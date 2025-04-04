@@ -38,7 +38,7 @@ def Home():
     with col2:
         ''
         ''
-        st.title('SPC')
+        st.title('써나와 나나니')
     with col3:
         # 홈으로 돌아가기 버튼
         if st.button("Home",key="to_home"):
