@@ -22,7 +22,7 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 
 def get_retriever():
     embedding = UpstageEmbeddings(model='embedding-query')
-    index_name = 'tax-upstage-index'
+    index_name = 'suna-index'
     database = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=embedding)
     retriever = database.as_retriever(search_kwargs={'k':3})
     return retriever
@@ -58,7 +58,8 @@ def get_llm():
 
 
 def get_dictionary_chain():
-    dictionary = ["사람을 나타내는 표현 -> 거주자"]
+    # dictionary = ["사람을 나타내는 표현 -> 거주자"]
+    dictionary = []
     llm = get_llm()
     prompt = ChatPromptTemplate.from_template(f"""
         사용자의 질문을 보고, 우리의 사전을 참고해서 사용자의 질문을 변경해주세요.
@@ -89,11 +90,21 @@ def get_rag_chain():
         examples = answer_examples
     )
 
+    # system_message_content = (
+    #     "당신은 소득세법 전문가입니다. 사용자의 소득세법에 관한 질문에 답변해주세요"
+    #     "아래에 제공된 문서를 활용해서 답변해주시고"
+    #     "답변을 알 수 없다면 모른다고 답변해주세요"
+    #     "답변을 제공할 때는 소득세법 (XX조)에 따르면 이라고 시작하면서 답변해주시고"
+    #     "2-3 문장정도의 짧은 내용의 답변을 원합니다"
+    #     "\n\n"
+    #     "{context}"
+
+    # )
     system_message_content = (
-        "당신은 소득세법 전문가입니다. 사용자의 소득세법에 관한 질문에 답변해주세요"
+        "당신은 선아와 창환에 대해 모든 것을 아는 전문가입니다. 질문에 답변해주세요"
         "아래에 제공된 문서를 활용해서 답변해주시고"
         "답변을 알 수 없다면 모른다고 답변해주세요"
-        "답변을 제공할 때는 소득세법 (XX조)에 따르면 이라고 시작하면서 답변해주시고"
+        "답변을 제공할 때는 선아에 대해 물어보는 경우 사랑하는 선아라고 언급 후 답변해주세요"
         "2-3 문장정도의 짧은 내용의 답변을 원합니다"
         "\n\n"
         "{context}"
